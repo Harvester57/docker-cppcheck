@@ -19,7 +19,7 @@ RUN git clone --branch 2.6 https://github.com/danmar/cppcheck.git --depth 1
 WORKDIR /usr/src/cppcheck
 
 RUN \
-  make install FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O3 -DNDEBUG --static" -j4 && \
+  make install FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O3 -DNDEBUG --static" -j$(getconf _NPROCESSORS_ONLN) && \
   strip /usr/bin/cppcheck && \
   apk del .required_apks && \
   rm -rf /usr/src/cppcheck
