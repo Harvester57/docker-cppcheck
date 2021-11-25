@@ -1,10 +1,10 @@
 # Source: https://hub.docker.com/_/alpine/
-FROM alpine:3.15.0 AS builder
+FROM alpine:3.15.0
 
 LABEL maintainer "florian.stosse@safrangroup.com"
 LABEL lastupdate "23-11-2021"
 LABEL author "Florian Stosse"
-LABEL description "CppCheck v2.6, built using Alpine image v3.14.3"
+LABEL description "CppCheck v2.6, built using Alpine image v3.15.0"
 LABEL license "MIT license"
 
 RUN \
@@ -14,15 +14,13 @@ RUN \
 WORKDIR /usr/src
 
 # Cf. https://github.com/danmar/cppcheck/releases
-RUN	git clone --branch 2.6 https://github.com/danmar/cppcheck.git --depth 1
+RUN git clone --branch 2.6 https://github.com/danmar/cppcheck.git --depth 1
 
 WORKDIR /usr/src/cppcheck
 
 RUN \
-  make install FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O3 -DNDEBUG --static" -j2 && \
-  strip /usr/bin/cppcheck
+  make install FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O3 -DNDEBUG --static" -j4 && \
+  strip /usr/bin/cppcheck && \
+  apk del .required_apks
 
-FROM alpine:3.15.0
-
-COPY --from=builder /usr/bin/cppcheck /usr/bin/cppcheck
 ENTRYPOINT ["cppcheck"]
