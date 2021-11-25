@@ -21,6 +21,7 @@ WORKDIR /usr/src/cppcheck
 RUN \
   make install FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O3 -DNDEBUG --static" -j4 && \
   strip /usr/bin/cppcheck && \
-  apk del .required_apks
+  apk del .required_apks && \
+  rm -rf /usr/src/cppcheck
 
 ENTRYPOINT ["cppcheck"]
