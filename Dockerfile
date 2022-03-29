@@ -2,9 +2,9 @@
 FROM alpine:3.15.3
 
 LABEL maintainer "florian.stosse@safrangroup.com"
-LABEL lastupdate "2022-03-24"
+LABEL lastupdate "2022-03-29"
 LABEL author "Florian Stosse"
-LABEL description "CppCheck v2.7, built using Alpine image v3.15.2"
+LABEL description "CppCheck v2.7, built using Alpine image v3.15.3"
 LABEL license "MIT license"
 
 RUN \
