@@ -19,15 +19,13 @@ RUN git clone --branch 2.7.5 https://github.com/danmar/cppcheck.git --depth 1
 WORKDIR /usr/src/cppcheck
 
 RUN \
-  make install FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O3 -DNDEBUG --static" -j$(getconf _NPROCESSORS_ONLN) && \
+  make install FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG --static" && \
   strip /usr/bin/cppcheck && \
   apk del .required_apks && \
   rm -rf /usr/src/cppcheck
   
-RUN groupadd -g 999 appuser && \
+RUN addgroup -g 999 appuser && \
     mkdir -p /home/appuser && \
-    useradd -r -d /home/appuser -u 999 -g appuser appuser && \
+    adduser -h /home/appuser -u 999 -G appuser appuser && \
     chown -R appuser:appuser /home/appuser
 USER appuser
-
-ENTRYPOINT ["cppcheck"]
