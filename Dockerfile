@@ -24,8 +24,8 @@ RUN \
   apk del .required_apks && \
   rm -rf /usr/src/cppcheck
   
-RUN addgroup -g 999 appuser && \
+RUN addgroup -g 666 appuser && \
     mkdir -p /home/appuser && \
-    adduser -h /home/appuser -u 999 -G appuser appuser && \
+    adduser -D -h /home/appuser -u 666 -G appuser appuser && \
     chown -R appuser:appuser /home/appuser
 USER appuser
