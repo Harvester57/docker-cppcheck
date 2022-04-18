@@ -23,5 +23,9 @@ RUN \
   strip /usr/bin/cppcheck && \
   apk del .required_apks && \
   rm -rf /usr/src/cppcheck
+  
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+USER appuser
 
 ENTRYPOINT ["cppcheck"]
