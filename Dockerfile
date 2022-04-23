@@ -19,8 +19,8 @@ RUN git clone --branch 2.7.5 https://github.com/danmar/cppcheck.git --depth 1
 WORKDIR /usr/src/cppcheck
 
 RUN \
-  make -j$(getconf _NPROCESSORS_ONLN) MATCHCOMPILER=yes FILESDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG --static -Wall -Wno-sign-compare -Wno-unused-function" && \ 
-  make install && \
+  make -j$(getconf _NPROCESSORS_ONLN) MATCHCOMPILER=yes HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG --static -Wall -Wno-sign-compare -Wno-unused-function" && \ 
+  make install FILESDIR=/cfg && \
   strip /usr/bin/cppcheck && \
   apk del .required_apks && \
   rm -rf /usr/src/cppcheck
