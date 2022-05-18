@@ -1,5 +1,5 @@
-# Source: https://hub.docker.com/_/alpine/
-FROM python:3.10.4-alpine3.15
+# Source: https://hub.docker.com/_/python
+FROM python:3.11.0b1-alpine3.15
 
 LABEL maintainer "florian.stosse@safrangroup.com"
 LABEL lastupdate "2022-04-18"
