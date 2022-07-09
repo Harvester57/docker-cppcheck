@@ -4,7 +4,7 @@ FROM python:3.11.0b3-alpine3.16
 LABEL maintainer "florian.stosse@safrangroup.com"
 LABEL lastupdate "2022-07-09"
 LABEL author "Florian Stosse"
-LABEL description "CppCheck v2.8, built using Alpine image v3.16"
+LABEL description "CppCheck v2.8.1, built using Alpine image v3.16"
 LABEL license "MIT license"
 
 RUN \
@@ -14,7 +14,7 @@ RUN \
 WORKDIR /usr/src
 
 # Cf. https://github.com/danmar/cppcheck/releases
-RUN git clone --branch 2.8 https://github.com/danmar/cppcheck.git --depth 1
+RUN git clone --branch 2.8.1 https://github.com/danmar/cppcheck.git --depth 1
 
 WORKDIR /usr/src/cppcheck
 
