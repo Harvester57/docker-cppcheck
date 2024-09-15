@@ -1,10 +1,10 @@
 # Source: https://hub.docker.com/_/python
-FROM python:3.12.3-alpine3.18
+FROM python:3.12.6-alpine3.20
 
 LABEL maintainer "florian.stosse@gmail.com"
-LABEL lastupdate "2024-04-11"
+LABEL lastupdate "2024-09-15"
 LABEL author "Florian Stosse"
-LABEL description "CppCheck v2.13.4, built using Alpine image v3.18 with Python 3.12.3"
+LABEL description "CppCheck v2.15.0, built using Alpine image v3.20 with Python 3.12.6"
 LABEL license "MIT license"
 
 RUN \
@@ -14,7 +14,7 @@ RUN \
 WORKDIR /usr/src
 
 # Cf. https://github.com/danmar/cppcheck/releases
-RUN git clone --branch 2.13.4 https://github.com/danmar/cppcheck.git --depth 1
+RUN git clone --branch 2.15.0 https://github.com/danmar/cppcheck.git --depth 1
 
 WORKDIR /usr/src/cppcheck
 
