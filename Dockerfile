@@ -14,7 +14,7 @@ RUN \
 WORKDIR /usr/src
 
 # Cf. https://github.com/danmar/cppcheck/releases
-RUN git clone --branch 2.17.0 https://github.com/danmar/cppcheck.git --depth 1
+RUN git clone --branch 2.17.1 https://github.com/danmar/cppcheck.git --depth 1
 
 WORKDIR /usr/src/cppcheck
 
