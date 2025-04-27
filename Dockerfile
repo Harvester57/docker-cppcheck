@@ -7,6 +7,9 @@ LABEL author="Florian Stosse"
 LABEL description="CppCheck v2.17.1, built using Alpine image v3.21 with Python 3.13.3"
 LABEL license="MIT license"
 
+RUN apk update && \
+    apk upgrade --available
+
 RUN \
   apk add --no-cache -t .required_apks git make g++ pcre-dev ca-certificates && \
   mkdir -p /usr/src /src
