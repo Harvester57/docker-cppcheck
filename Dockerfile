@@ -26,6 +26,7 @@ RUN \
   make install FILESDIR=/cfg && \
   strip /usr/bin/cppcheck && \
   apk del .required_apks && \
+  apk add libstdc++ libgcc && \
   rm -rf /usr/src/cppcheck
   
 RUN addgroup -g 666 appuser && \
