@@ -4,7 +4,7 @@ FROM python:3.15.0a3-alpine@sha256:c7fcf93b725e5e2e9c506f1c20630e3617907cf9e6823
 LABEL maintainer="florian.stosse@gmail.com"
 LABEL lastupdate="2025-10-26"
 LABEL author="Florian Stosse"
-LABEL description="CppCheck v2.18.3, built using Alpine image with Python 3.13"
+LABEL description="CppCheck v2.19.0, built using Alpine image with Python 3.13"
 LABEL license="MIT license"
 
 RUN apk update && \
@@ -17,7 +17,7 @@ RUN \
 WORKDIR /usr/src
 
 # Cf. https://github.com/danmar/cppcheck/releases
-RUN git clone --branch 2.18.3 https://github.com/danmar/cppcheck.git --depth 1
+RUN git clone --branch 2.19.0 https://github.com/danmar/cppcheck.git --depth 1
 
 WORKDIR /usr/src/cppcheck
 
@@ -40,3 +40,4 @@ USER appuser
 RUN cppcheck -h
 
 ENTRYPOINT [ "cppcheck" ]
+
