@@ -11,7 +11,7 @@ RUN apk update && \
     apk upgrade --available
 
 RUN \
-  apk add --no-cache -t .required_apks git make g++ pcre-dev ca-certificates && \
+  apk add --no-cache -t .required_apks git make g++ pcre-dev ca-certificates libexecinfo-dev && \
   mkdir -p /usr/src /src
 
 WORKDIR /usr/src
@@ -40,5 +40,6 @@ USER appuser
 RUN cppcheck -h
 
 ENTRYPOINT [ "cppcheck" ]
+
 
 
