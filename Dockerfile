@@ -1,5 +1,5 @@
 # Source: https://hub.docker.com/_/python
-FROM python:3.15.0a5-alpine@sha256:f77a9303949324561403f4be60dca95b3c7e42f7e5510e78aa5564da3104d6e2
+FROM python:3.15.0a5-alpine@sha256:998bc0bdc3da726d5e4446e8e1497c64020a7c2de6b849170de375af5fac87c6
 
 LABEL maintainer="florian.stosse@gmail.com"
 LABEL lastupdate="2026-01-19"
