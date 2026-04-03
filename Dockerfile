@@ -1,45 +1,39 @@
 # Source: https://hub.docker.com/_/python
-FROM python:3.15.0a6-alpine@sha256:1f3d508838ef876fb62070f2080d469c234c6db03b7beeae5c84f6c8c810e664
+FROM dhi.io/debian-base:trixie-debian13-dev@sha256:0f418f411e5735a418e475f86703b24f1d78c0a386e0a4d9872e8d617ff7a860
 
 LABEL maintainer="florian.stosse@gmail.com"
-LABEL lastupdate="2026-01-19"
+LABEL lastupdate="2026-04-03"
 LABEL author="Florian Stosse"
-LABEL description="CppCheck v2.19.1, built using Alpine image with Python 3.13"
+LABEL description="CppCheck v2.20.1, built using Docker Hardened Debian image"
 LABEL license="MIT license"
 
-RUN apk update && \
-    apk upgrade --available
+ARG DEBIAN_FRONTEND=noninteractive
 
-RUN \
-  apk add --no-cache -t .required_apks git make g++ pcre-dev ca-certificates libexecinfo-dev && \
-  mkdir -p /usr/src /src
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  build-essential \
+  cmake \
+  git \
+  ca-certificates \
+  libpcre2-dev \
+  libpcre2-8-0 \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src
 
 # Cf. https://github.com/danmar/cppcheck/releases
-RUN git clone --branch 2.19.1 https://github.com/danmar/cppcheck.git --depth 1
+RUN git clone --branch 2.20.1 https://github.com/danmar/cppcheck.git --depth 1 
 
 WORKDIR /usr/src/cppcheck
 
-RUN \
-  make -j$(getconf _NPROCESSORS_ONLN) MATCHCOMPILER=yes FILESDIR=/usr/share/cppcheck HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function" && \ 
-  make install FILESDIR=/cfg && \
-  strip /usr/bin/cppcheck && \
-  apk del .required_apks && \
-  apk add libstdc++ libgcc && \
-  rm -rf /usr/src/cppcheck
-  
-RUN addgroup -g 666 appuser && \
-    mkdir -p /home/appuser && \
-    adduser -D -h /home/appuser -u 666 -G appuser appuser && \
-    chown -R appuser:appuser /home/appuser
-ENV PATH="/home/appuser/.local/bin:${PATH}"
-USER appuser
+RUN git fetch --depth 1 origin pull/8382/head && git checkout FETCH_HEAD # Temporary checkout the PCRE2 support PR 8382 until the PR is merged
+
+RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DHAVE_RULES=ON && \
+    cmake --build build && \
+    cmake --install build --prefix=/usr/local
+
+USER nonroot
 
 # Test run
 RUN cppcheck -h
 
 ENTRYPOINT [ "cppcheck" ]
-
-
-
