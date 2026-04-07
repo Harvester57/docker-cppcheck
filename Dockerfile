@@ -27,7 +27,7 @@ WORKDIR /usr/src/cppcheck
 
 RUN git fetch --depth 1 origin pull/8382/head && git checkout FETCH_HEAD # Temporary checkout the PCRE2 support PR 8382 until the PR is merged
 
-RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DHAVE_RULES=ON && \
+RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DHAVE_RULES=ON -DUSE_PCRE2=ON -DDISABLE_PCRE1=ON && \
     cmake --build build && \
     cmake --install build --prefix=/usr/local
 
