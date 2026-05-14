@@ -14,17 +14,3 @@ updates:
       applies-to: version-updates
       patterns:
       - "*"
-- package-ecosystem: "github-actions"
-  directory: "/"
-  commit-message:
-    prefix: "actions"
-  labels: [ 'github-actions' ]
-  assignees:
-  - "Harvester57"
-  schedule:
-    interval: "weekly"
-  groups:
-    actions-dependencies:
-      applies-to: version-updates
-      patterns:
-      - "*"
