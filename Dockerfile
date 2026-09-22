@@ -1,5 +1,5 @@
 # Source: https://hub.docker.com/_/python
-FROM dhi.io/debian-base:trixie-debian13-dev@sha256:340a87dc9e0505c7fbfdbd741fb977eed377130c17b03989e2c407aa8e1a2872
+FROM dhi.io/debian-base:trixie-debian13-dev@sha256:50618300f8544f54a083d623488a9437aed7c2769c82c9899a4ac71929b91d05
 
 LABEL maintainer="florian.stosse@gmail.com"
 LABEL lastupdate="2026-04-03"
