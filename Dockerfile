@@ -1,4 +1,4 @@
-FROM dhi.io/debian-base:trixie-debian13-dev@sha256:c6fc0de84b65bc20346cee5f071fd976ccf383431515db2a4d9721ca936feb9f
+FROM dhi.io/debian-base:trixie-debian13-dev@sha256:04a23b0daf5f06a4985703cce7942ea96be5448946f3e2ea2ef15ff9db0ae1e9
 
 LABEL org.opencontainers.image.authors="Florian Stosse <florian.stosse@gmail.com>"
 LABEL org.opencontainers.image.created="2026-04-03"
